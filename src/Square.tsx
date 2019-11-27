@@ -47,7 +47,7 @@ const Initials = styled.div`
   right: 0;
   height: 100%;
   width: 100%;
-  font-size: 50px;
+  font-size: 36px;
   color: rgba(105,105,105, .15);
   display: flex;
   flex-direction: column;

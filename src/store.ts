@@ -35,10 +35,10 @@ export const content: ContentItem[] = [
   freeSpace,
   {id: "18", value: "Let's rock and roll", owner: ContentOwner.Bill},
   {id: "19", value: "So that's interesting...", owner: ContentOwner.Don},
-  {id: "20", value: "Placeholder", owner: ContentOwner.Either},
-  {id: "21", value: "Placeholder", owner: ContentOwner.Either},
-  {id: "22", value: "Placeholder", owner: ContentOwner.Either},
-  {id: "23", value: "Placeholder", owner: ContentOwner.Either},
+  {id: "20", value: "Mentions drugs", owner: ContentOwner.Bill},
+  {id: "21", value: "Brings up Mask & Whig", owner: ContentOwner.Don},
+  {id: "22", value: "Free Space", owner: ContentOwner.Either},
+  {id: "23", value: "Free Space", owner: ContentOwner.Either},
 ];
 
 
