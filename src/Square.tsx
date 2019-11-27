@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import {AppState, useStoreActions, ContentItem, useStoreState, ContentOwner} from "./store";
+import styled, { css } from 'styled-components';
+import {AppState, useStoreActions, ContentItem, useStoreState, ContentOwner, freeSpace} from "./store";
 
 
 type Props = {
@@ -8,10 +8,17 @@ type Props = {
   selected: boolean,
   onClick: () => void;
 };
+
+const hover = css`
+  &:hover {
+     background-color: rgba(174,112,10, .2) 
+  }
+`;
 const SquareContainer = styled.div`
   position: relative;
   width: 20%;
 `;
+
 const SquareButton = styled.button<{selected: boolean}>`
   background-color: ${ ({ selected }) => selected ? 'rgba(255,104,4, 10)': 'transparent'};  
   color: ${ ({ selected }) => selected ? 'white': 'black'};
@@ -21,6 +28,8 @@ const SquareButton = styled.button<{selected: boolean}>`
   top: 0;
   bottom: 0;
   width: 100%;
+  outline: none;
+  ${({ selected }) => !selected && hover}
 `;
 export const Square: React.FC<Props> = ({ item }) =>  {
   const toggleItem = useStoreActions(actions => actions.toggleItem);
@@ -31,6 +40,7 @@ export const Square: React.FC<Props> = ({ item }) =>  {
     return (
       <SquareContainer>
         <SquareButton
+          disabled={item.id === freeSpace.id}
           onClick={() => toggleItem(item.id)}
           selected={selected}>
           {item.value}
