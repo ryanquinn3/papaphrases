@@ -8,27 +8,20 @@ type Props = {
   selected: boolean,
   onClick: () => void;
 };
-
-const hover = css`
-  &:hover {
-     background-color: rgba(174,112,10, .2) 
-  }
-`;
 const SquareContainer = styled.div`
   position: relative;
   width: 20%;
 `;
 
 enum Color {
-  Green = 'rgba(179, 210, 141)',
-  OffWhite = 'rgba(235, 230, 202)',
-  Crayola = 'rgba(225, 196, 154)',
-  Champagne = 'rgba(238, 215, 168)',
-  Gold = 'rgba(235, 184, 145)'
+  Green = 'rgba(179, 210, 141, .5)',
+  OffWhite = 'rgba(235, 230, 202, .5)',
+  Crayola = 'rgba(225, 196, 154, .5)',
+  Champagne = 'rgba(238, 215, 168, .5)',
+  Gold = 'rgba(235, 184, 145, .5)'
 }
 const SquareButton = styled.button<{selected: boolean, color?: Color }>`
   background-color: ${ ({ color }) => color };  
-  color: ${ ({ selected }) => selected ? 'white': 'black'};
   position: absolute;
   left: 0;
   right:0;
@@ -36,8 +29,7 @@ const SquareButton = styled.button<{selected: boolean, color?: Color }>`
   bottom: 0;
   width: 100%;
   outline: none;
-  ${({ selected }) => !selected && hover}
-  
+ 
 `;
 export const Square: React.FC<Props> = ({ item }) =>  {
   const toggleItem = useStoreActions(actions => actions.toggleItem);
@@ -53,7 +45,7 @@ color={color}          disabled={item.id === freeSpace.id}
           selected={selected}>
           {item.value}
         </SquareButton>
-        <Initials>{item.owner === ContentOwner.Bill ? 'BQ' : item.owner === ContentOwner.Don ? 'DF' : ""}</Initials>
+        { !selected && <Initials>{item.owner === ContentOwner.Bill ? 'BQ' : item.owner === ContentOwner.Don ? 'DF' : ""}</Initials>}
       </SquareContainer>
     );
 };
@@ -81,10 +73,10 @@ const Initials = styled.div`
   height: 100%;
   width: 100%;
   font-size: 36px;
-  color: rgba(105,105,105, .15);
+  color: rgba(105,105,105, .45);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   z-index: -1;
 `;
